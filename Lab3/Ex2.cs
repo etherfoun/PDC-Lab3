@@ -9,8 +9,6 @@ namespace Lab3
     {
         public static void Start()
         {
-            var waitHandle = new AutoResetEvent(false);
-
             Console.WriteLine("Enter matrix size:");
             int n = Convert.ToInt32(Console.ReadLine());
 
@@ -26,6 +24,19 @@ namespace Lab3
 
             stopwatch.Stop();
             Console.WriteLine($"Time taken while parallel: {stopwatch.ElapsedMilliseconds} ms");
+
+            if (n < 10)
+            {
+                var i = 1;
+                foreach (var matrix in matrices)
+                {
+                    Console.WriteLine($"Matrix {i++}");
+                    PrintMatrix(matrix);
+                }
+
+                Console.WriteLine("Result:");
+                PrintMatrix(result);
+            }
         }
 
         private static int[][][] GenerateMatrices(int size, int numOfMatrices)
@@ -81,7 +92,7 @@ namespace Lab3
             {
                 for (int j = 0; j < matrix[i].Length; j++)
                 {
-                    Console.Write(matrix[i][j]);
+                    Console.Write(matrix[i][j] + " ");
                 }
                 Console.WriteLine();
             }
